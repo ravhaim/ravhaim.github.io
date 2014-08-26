@@ -1,1 +1,1 @@
-﻿{"info":"","version":"348","broadcast":true}
+{"info":"","version":"348","broadcast":true}
