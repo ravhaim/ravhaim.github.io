@@ -1,1 +1,1 @@
-{"info":"---","version":"349","broadcast":true}
+{"info":"---","version":"349","broadcast":1}
