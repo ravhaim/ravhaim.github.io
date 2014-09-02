@@ -414,7 +414,7 @@ if (jQuery.browser.msie)
         function jsbridge(){}
 
     if( ( video = document.getElementById( 'live-player' )).canPlayType( 'application/x-mpegURL' ))
-        video. src = "http://media.ravhaim.org/live/live.m3u8"
+//        video. src = "http://media.ravhaim.org/live/live.m3u8"
     else
         swfobject.embedSWF(
             "StrobeMediaPlayback.swf"
