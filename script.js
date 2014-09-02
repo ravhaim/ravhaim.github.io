@@ -404,38 +404,59 @@ if (jQuery.browser.msie)
 
     $('#live').each(function()
 	{
-        //if( browser_type.is_flash )
-//		{
-/*			swfobject.embedSWF(
-				'http://player.viewer.dacast.com/DacastPlayer.swf?c=5455_7008',
-				'live-player-stub',
-				'426',
-				'240',
-				'9.0.0',
-				'http://player.viewer.dacast.com/expressInstall.swf',
-				{},
-				{
-					quality: 'best',
-					wmode: 'transparent',
-					bgcolor: '#ffffff',
-					allowfullscreen: 'true',
-					allowscriptaccess: 'always'
-				},
-				{}
-			)
-*/			live.manage()
-			
-//		} 
+			live.manage()
 	})
-
-    //if( browser_type.is_flash )
-	{
     	$('#live').everyTime( 10000, function()
     	{
             live.manage()
     	})
-	}
 	
+        function jsbridge(){}
+
+    if( ( video = document.getElementById( 'live-player' )).canPlayType( 'application/x-mpegURL' ))
+        video. src = "http://media.ravhaim.org/live/live.m3u8"
+    else
+        swfobject.embedSWF(
+            "StrobeMediaPlayback.swf"
+            , "live-player"
+            , 426
+            , 240
+            , "10.1.0"
+            , "expressInstall.swf"
+            , {
+                src: "http://media.ravhaim.org/live/live.m3u8",
+                autoPlay: "false",
+                verbose: true,
+                controlBarAutoHide: "true",
+                controlBarPosition: "bottom",
+                poster: "poster.png",
+                javascriptCallbackFunction: "jsbridge",
+                plugin_hls: "flashlsOSMF.swf",
+                hls_minbufferlength: -1,
+                hls_maxbufferlength: 30,
+                hls_lowbufferlength: 3,
+                hls_seekmode: "SEGMENT_SEEK",
+                hls_startfromlevel: -1,
+                hls_seekfromlevel: -1,
+                hls_live_flushurlcache: false,
+                hls_info: true,
+                hls_debug: false,
+                hls_debug2: false,
+                hls_warn: true,
+                hls_error: true,
+                hls_fragmentloadmaxretry : -1,
+                hls_manifestloadmaxretry : -1,
+                hls_capleveltostage : false,
+                hls_maxlevelcappingmode : "downscale"
+            }
+            , {
+                allowFullScreen: "true",
+                wmode: "window"
+            }
+            , {
+                name: "live-player"
+            }
+        )
 /*	if( !browser_type.is_ios && !browser_type.is_flash )
 	{
 	    $('#flash-warn').show()
@@ -461,7 +482,7 @@ var live =
 //					{
 						$('#info-wrap').hide()
 						$('#info-player').hide()
-						$('#live-player').show()
+						$('#live-player')[0].style.display='block'
 //					} /* else
 //					{
 //						$(browser_type.assoc).show()
