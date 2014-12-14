@@ -44,8 +44,19 @@ hr {
     background-position: center 80%;
 }
 
+#site-home-section-title {
+    text-shadow: 1px 1px #eee;
+    font-weight: bold;
+}
+
+.site-btn-shiur a {
+    width: 182px;
+    margin-top: 4px;
+}
+
 .site-btn-shiur * {
     color: #19198D;
+    text-shadow: 1px 1px #eee;
 }
 
 .site-btn-shiur *:hover * {
