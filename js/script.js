@@ -11,8 +11,8 @@ $( document ). ready( function() {
             has_video:  'true' == $( '#site-player-od' ). attr( 'data-site-od-player-has-video' ),
             poster:     $( '#site-player-od-video' ). attr( 'poster' ),
             nohtml5:    'undefined' == typeof $( '#site-player-od-video' )[ 0 ],
-            play:       function( ext = null ) {
-                            if( null === ext )
+            play:       function( ext ) {
+                            if( typeof ext == 'undefined' )
                                 if( tmp0. has_video && true == $( '#site-player-od-sel-video input' )[ 0 ]. checked )
                                     media_file = tmp0. name + '.mp4'
                                 else media_file = tmp0. name + '.mp3'
