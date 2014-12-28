@@ -95,7 +95,8 @@ hr {
     cursor: pointer;
     color:#333;
     text-shadow:1px 1px black;
-    font-size: 253px;
+    font-size: 800%;
+    line-height: 360px;
     opacity: 0.2;
 }
 
@@ -103,6 +104,36 @@ hr {
     color:#444;
     text-shadow:1px 1px #fff;
     background: #eee;
+}
+
+@media (max-width: 675px ) {
+    #site-player-od-poster {
+        width: 480px;
+        height: 270px;
+    }
+    #site-player-od-play {
+        line-height: 270px;
+    }
+}
+
+@media (max-width: 515px ) {
+    #site-player-od-poster {
+        width: 360px;
+        height: 200px;
+    }
+    #site-player-od-play {
+        line-height: 200px;
+    }
+}
+
+@media (max-width: 390px ) {
+    #site-player-od-poster {
+        width: 270px;
+        height: 150px;
+    }
+    #site-player-od-play {
+        line-height: 150px;
+    }
 }
 
 .site-player-od-media  {
