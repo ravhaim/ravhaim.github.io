@@ -35,6 +35,21 @@ hr {
     font-family: banner;
     font-size: 200%;
     margin-right: 5%;
+    margin-top: 1%;
+    position: absolute;
+    height: 100px;
+}
+
+@media (max-width: 520px ) {
+    #site-banner {
+        font-size: 150%;
+    }
+}
+
+@media (max-width: 350px) {
+    #site-banner {
+        font-size: 90%;
+    }
 }
 
 /*#site-home {
