@@ -37,12 +37,12 @@ hr {
     margin-right: 5%;
 }
 
-#site-home {
+/*#site-home {
     background-image: url( ../image/kislev.png );
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center 80%;
-}
+}*/
 
 #site-home-section-title {
     text-shadow: 1px 1px #eee;
