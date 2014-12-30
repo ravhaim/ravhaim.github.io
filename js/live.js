@@ -54,7 +54,7 @@ var plive = {
     },
     // video_tag()
     video_tag: function() {
-        $( '#site-player-live-outer' ). html( '<div id="site-player-live-outer"><video id="site-player-live" src="' + plive.source + '" controls autoPlay width="' + plive.dim.w + '" height="' + plive.dim.h + '" onended="plive.play();"></video></div>' )
+        $( '#site-player-live-outer' ). html( '<div id="site-player-live-outer"><video id="site-player-live" src="' + plive.source + '" controls autoPlay type="application/x-mpegURL" width="' + plive.dim.w + '" height="' + plive.dim.h + '" onended="plive.play();"></video></div>' )
     },
     // video_flash()
     video_flash: function() {
