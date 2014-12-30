@@ -6,16 +6,17 @@
 <div id="test"></div>
 <video id="site-player-live"></video>
 <script>
-var x
+var x = {}
 function test() {
-    if( navigator.userAgent.match(/iP(?:hone|od|ad)/i)) x = 'iphone'
+    if( navigator.userAgent.match(/iP(?:hone|od|ad)/i)) x.iphone = 'iphone'
     else $.getScript( 'js/swfobject-2.2.min.js', function() { 
-        if( swfobject.getFlashPlayerVersion().major ) x = 'flash'
-        else if( document.getElementById( 'site-player-live' ).canPlayType( 'application/x-mpegURL' )) x = 'video tag'
-        else x = 'unknown'
-        document.getElementById( 'test' ).innerHTML = x
+        if( swfobject.getFlashPlayerVersion().major ) x.flash = 'flash'
+        if( document.getElementById( 'site-player-live' )
+            .canPlayType( 'application/x-mpegURL' )) x.url = 'video tag - mpegURL'
+        if( document.getElementById( 'site-player-live' )
+            .canPlayType( 'video/vnd.dlna.mpeg-tts' )) x.tts = 'video tag - mpeg-tts'
+        document.getElementById( 'test' ).innerHTML = JSON.stringify( x )
     })
-    document.getElementById( 'test' ).innerHTML = x
 }
 (test)()
 </script>
