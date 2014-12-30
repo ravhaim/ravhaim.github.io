@@ -49,7 +49,7 @@ var plive = {
         else $.getScript( 'js/swfobject-2.2.min.js', function() { 
             if( swfobject.getFlashPlayerVersion().major ) plive.video_flash()
             else if( document.getElementById( 'site-player-live' ).canPlayType( 'application/x-mpegURL' )) plive.video_tag()
-            else plive.video_flash()
+            else plive.video_tag()
         })
     },
     // video_tag()
