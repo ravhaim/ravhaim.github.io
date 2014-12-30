@@ -4,7 +4,10 @@
 <body>
 <pre id="test"></pre>
 <script>
-document.getElementById('test').innerHTML = JSON.stringify( navigator, null, 2 )
+document.getElementById('test').innerHTML = ''
+for( var i in window.navigator ) {console.log(i)
+    document.getElementById('test').innerHTML += "\n{" + i + ': ' + JSON.stringify( window.navigator[ i ], null, 2 ) + '}'
+}
 </script>
 </body>
 </html>
