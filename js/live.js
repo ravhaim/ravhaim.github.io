@@ -2,7 +2,7 @@
 var plive = {
     dim:    { w: 640, h: 360 },
     source: 'http://media.ravhaim.org/live/live.m3u8',
-    state:  'http://ravhaim.org/live.json',
+    state:  'http://media.ravhaim.org/live/live.json',
     splash: 'http://ravhaim.org/splash.txt',
     cache:  '',
     // init()
