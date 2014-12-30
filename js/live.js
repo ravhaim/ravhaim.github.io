@@ -45,7 +45,7 @@ var plive = {
         if( 390 > ww ) plive.dim = { w: 270, h: 150 }
         else if( 515 > ww ) plive.dim = { w: 360, h: 200 }
         else if( 675 > ww ) plive.dim = { w: 480, h: 270 }
-        if( navigator.userAgent.match(/iP(?:hone|od|ad)/i)) video_tag()
+        if( navigator.userAgent.match(/iP(?:hone|od|ad)/i)) plive.video_tag()
         else $.getScript( 'js/swfobject-2.2.min.js', function() { 
             if( swfobject.getFlashPlayerVersion().major ) plive.video_flash()
             else if( document.getElementById( 'site-player-live' ).canPlayType( 'application/x-mpegURL' )) plive.video_tag()
