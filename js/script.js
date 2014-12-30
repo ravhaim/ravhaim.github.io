@@ -36,7 +36,7 @@ $( document ). ready( function() {
                             $( '#site-player-od' ). attr( 'data-site-player-od-status', 'playing' )
                         },
             init:       function() {
-                            if( tmp0. nohtml5 ) $.getScript( 'swfobject-2.2.min.js', function(){ tmp0. play() })
+                            if( tmp0. nohtml5 ) $.getScript( 'js/swfobject-2.2.min.js', function(){ tmp0. play() })
                             else $( '#site-player-od-play' ). click( function(){ tmp0. play() })
                             $( '#site-player-od-sel-video, #site-player-od-sel-audio' ). click( function() {
                                 if( 'playing' == $( '#site-player-od' ). attr( 'data-site-player-od-status' ))

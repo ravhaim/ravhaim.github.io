@@ -145,4 +145,7 @@ hr {
     display: none;
 }
 
+#site-player-live-outer h5, #site-player-live-outer h3 {
+    border-radius: 3px;
+}
 
