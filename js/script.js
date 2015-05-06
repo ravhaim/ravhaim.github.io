@@ -57,7 +57,7 @@ $( document ). ready( function() {
         return false
 	})
     
-    var api_endpoint = 'http://ravhaim.gopagoda.com?action=?'
+    var api_endpoint = 'http://peaceful-caverns-2731.herokuapp.com?action=?'
 
     // Register
     $( '#site-register-submit' ). click( function() {
