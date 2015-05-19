@@ -115,6 +115,19 @@ $( document ). ready( function() {
             })
             return false
     })
+    
+    // Subscribe/Unsubscribe
+    if( /(?:un)subscribe\.html\?[a-z0-9]{32}$/.test( document.location ))
+        $.getJSON( api_endpoint, Object.createProperty( new Object, action = document.location.pathname.split('/').pop().split('.')[0], document.location.query ))
+        .done( function( response ) {
+            $( '#site-' + action + '-finish' ). modal( 'show' )
+            if( 'success' == response.result ) $( '.site-' + action + '-success' ). show()
+            else $( '.site-' + action + '-unknown' ). show()
+        })
+        .fail( function( response ) {
+            $( '#site-' + action + '-finish' ). modal( 'show' )
+            $( '.site-' + action + '-fail' ). show()
+        })
 })    
     
 
