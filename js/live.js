@@ -7,12 +7,14 @@ var plive = {
     cache:  '',
     // init()
     init: function() {
-        $.getJSON( plive.state )
-            .done( plive.live_switch ) 
-        setInterval( function() {
+        if( $( '#site-player-live-outer' ). length ) {
             $.getJSON( plive.state )
-                .done( plive.live_switch )},
-        8000 )
+                .done( plive.live_switch ) 
+            setInterval( function() {
+                $.getJSON( plive.state + '?' + (new Date ).getSeconds() )
+                    .done( plive.live_switch )},
+            8000 )
+        }
     },
     // live_switch()
     live_switch: function( response ) {
