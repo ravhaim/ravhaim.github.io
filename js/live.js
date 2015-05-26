@@ -17,7 +17,7 @@ var plive = {
         }
     },
     // live_switch()
-    live_switch: function( response ) {
+    live_switch: function( response ) { console.log(response)
         if( plive.cache !== response.b )
             switch( response.b ) {
                 case 0:
