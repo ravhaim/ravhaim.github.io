@@ -9,11 +9,39 @@ var plive = {
     init: function() {
         if( $( '#site-player-live-outer' ). length ) {
             $.getJSON( plive.state )
-                .done( plive.live_switch ) 
-            setInterval( function() {
-                $.getJSON( plive.state + '?' + (new Date ).getSeconds() )
-                    .done( plive.live_switch )},
-            8000 )
+                .done( plive.live_switch2 ) 
+
+            loadOrtcFactory( IbtRealTimeSJType, function ( factory, error ) {
+                DEBUG = false // false = debug, true = don't debug
+                if ( error != null ) console.error( 'ORTC Factory error: ' + error. message )
+                else {
+                    if (factory != null) {
+                        console.assert( DEBUG, 'Connecting' )
+                        var ortcClient = factory.createClient()
+                        ortcClient. setId( 'browser' )
+                        ortcClient. setConnectionMetadata( 'browser' )
+                        ortcClient. setClusterUrl( 'http://ortc-developers.realtime.co/server/2.1/' )
+                        ortcClient. onConnected    = function( ortc ) {
+                            console.assert( DEBUG, 'Successfully connected' )
+                            ortcClient.subscribe( 'splash', true, function ( ortc, channel, message ) {
+                                console.assert( DEBUG, message )
+                                plive.live_switch2( message )
+                            })
+                        }
+                        ortcClient. onDisconnected = function( ortc ) { console. error( 'Disconnected' )}
+                        ortcClient. onSubscribed   = function( ortc, channel   ) { console.assert( DEBUG, 'Subscribed to ' + channel )}
+                        ortcClient. onException    = function( ortc, exception ) { console. error( 'Exception: ' + exception )}
+                        ortcClient. onReconnecting = function( ortc ) { console. info( 'Reconnecting' )}
+                        ortcClient. onReconnected  = function( ortc ) { console. info( 'Successfully reconnected' )}
+                        ortcClient. connect( 'gkdOJA', 'vusukvfhyucfhkgukojxsu' )
+                    }
+                }
+            })
+
+            //setInterval( function() {
+            //    $.getJSON( plive.state + '?' + (new Date ).getSeconds() )
+            //        .done( plive.live_switch )},
+            //8000 )
         }
     },
     // live_switch()
@@ -38,6 +66,37 @@ var plive = {
                     $( '#site-player-live-outer' ). html( '<div id="site-player-live-outer"><h3 class="text-center bg-primary"><br>תודה ולהתראות!<br>&nbsp;</h3></div>' )
             }
         plive.cache = response.b
+    },
+    live_switch2: function( response ) {
+        if( 'string' == typeof response ) var r = JSON.parse( response )
+        else var r = response
+        console.log(r)
+        switch( r. c ) {
+            case 1:
+                plive.show_video()
+                break
+            case 2:
+                plive.show_splash( 'מיד נתחיל בשידור הישיר של השיעור, אנא המתינו כאן<br>&nbsp;' )
+                break
+            case 3:
+                plive.show_splash( 'אנא עקבו כאן אחר עדכונים לגבי מועד השיעור הבא.<br>לפרטים נוספים אנא עיינו בדף&nbsp;<a class="btn-primary" href="about.html"><u>אודות השיעורים</u></a>.<br>&nbsp;' )
+                break
+            case 4:
+                plive.show_splash(
+                    'השיעור הבא יימסר מהרב שליט"א בע"ה ב' +
+                    r.w + ', ' +
+                    r.yh + ' ' +
+                    r.hh + ' ' +
+                    r.sh + ', אחר תפילת המנחה (תחילת התפילה בשעה ' +
+                    r.t + ':' + r.m +
+                    ')<br>לפרטים נוספים אנא עיינו בדף&nbsp;<a class="btn-primary" href="about.html"><u>אודות השיעורים</u></a>.<br>&nbsp;' )
+                break
+            case 5:
+                plive.show_splash( r. t + '<br>&nbsp;' )
+        }
+    },
+    show_splash: function( msg ) {
+        $( '#site-player-live-outer' ).html( '<div id="site-player-live-outer"><h5 class="text-center bg-primary"><br>' + msg + '</h5></div>' )
     },
     // show_video()
     show_video: function() {
