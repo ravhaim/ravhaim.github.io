@@ -70,7 +70,6 @@ var plive = {
     live_switch2: function( response ) {
         if( 'string' == typeof response ) var r = JSON.parse( response )
         else var r = response
-        console.log(r)
         switch( r. c ) {
             case 1:
                 plive.show_video()
