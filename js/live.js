@@ -1,72 +1,27 @@
 
 var plive = {
+    SOURCE: 'http://media.ravhaim.org/live/live.m3u8',
+    STATE:  'http://media.ravhaim.org/live/live.json',
+    CHANNEL: '/status',
+    ENDP:    'http://status-ravhaim.rhcloud.com/status',
+
     dim:    { w: 640, h: 360 },
-    source: 'http://media.ravhaim.org/live/live.m3u8',
-    state:  'http://media.ravhaim.org/live/live.json',
-    splash: 'http://ravhaim.org/splash.txt',
     cache:  '',
+    client: {},
+
     // init()
     init: function() {
         if( $( '#site-player-live-outer' ). length ) {
-            $.getJSON( plive.state )
-                .done( plive.live_switch2 ) 
-
-            loadOrtcFactory( IbtRealTimeSJType, function ( factory, error ) {
-                DEBUG = false // false = debug, true = don't debug
-                if ( error != null ) console.error( 'ORTC Factory error: ' + error. message )
-                else {
-                    if (factory != null) {
-                        console.assert( DEBUG, 'Connecting' )
-                        var ortcClient = factory.createClient()
-                        ortcClient. setId( 'browser' )
-                        ortcClient. setConnectionMetadata( 'browser' )
-                        ortcClient. setClusterUrl( 'http://ortc-developers.realtime.co/server/2.1/' )
-                        ortcClient. onConnected    = function( ortc ) {
-                            console.assert( DEBUG, 'Successfully connected' )
-                            ortcClient.subscribe( 'splash', true, function ( ortc, channel, message ) {
-                                console.assert( DEBUG, message )
-                                plive.live_switch2( message )
-                            })
-                        }
-                        ortcClient. onDisconnected = function( ortc ) { console. error( 'Disconnected' )}
-                        ortcClient. onSubscribed   = function( ortc, channel   ) { console.assert( DEBUG, 'Subscribed to ' + channel )}
-                        ortcClient. onException    = function( ortc, exception ) { console. error( 'Exception: ' + exception )}
-                        ortcClient. onReconnecting = function( ortc ) { console. info( 'Reconnecting' )}
-                        ortcClient. onReconnected  = function( ortc ) { console. info( 'Successfully reconnected' )}
-                        ortcClient. connect( 'gkdOJA', 'vusukvfhyucfhkgukojxsu' )
-                    }
-                }
+            $.getJSON( plive.STATE )
+                .done( plive.live_switch2 )
+            
+            plive. client = new Faye.Client( plive. ENDP )
+            plive. client. subscribe( plive. CHANNEL, function( message ) {
+                plive.live_switch2( message )
             })
-
-            //setInterval( function() {
-            //    $.getJSON( plive.state + '?' + (new Date ).getSeconds() )
-            //        .done( plive.live_switch )},
-            //8000 )
         }
     },
-    // live_switch()
-    live_switch: function( response ) {
-        if( plive.cache !== response.b )
-            switch( response.b ) {
-                case 0:
-                    $.ajax( plive.splash, { cache: false })
-                        .done( function( response ) {
-                            $( '#site-player-live-outer' )
-                            .html( '<div id="site-player-live-outer"><h5 class="text-center bg-primary"><br>' +
-                            response + 
-                            '<br>לפרטים נוספים אנא עיינו בדף&nbsp;<a class="btn-primary" href="about.html"><u>אודות השיעורים</u></a>.<br>&nbsp;</h5></div>' )})
-                    break
-                case 1:
-                    plive.show_video()
-                    break
-                case 2:
-                    $( '#site-player-live-outer' ). html( '<div id="site-player-live-outer"><h3 class="text-center bg-primary"><br>מיד נתחיל בשידור הישיר של השיעור השבועי, אנא המתינו כאן<br>&nbsp;</h3></div>' )
-                    break
-                case 3:
-                    $( '#site-player-live-outer' ). html( '<div id="site-player-live-outer"><h3 class="text-center bg-primary"><br>תודה ולהתראות!<br>&nbsp;</h3></div>' )
-            }
-        plive.cache = response.b
-    },
+
     live_switch2: function( response ) {
         if( 'string' == typeof response ) var r = JSON.parse( response )
         else var r = response
@@ -97,9 +52,10 @@ var plive = {
     show_splash: function( msg ) {
         $( '#site-player-live-outer' ).html( '<div id="site-player-live-outer"><h5 class="text-center bg-primary"><br>' + msg + '</h5></div>' )
     },
+
     // show_video()
     show_video: function() {
-        $( '#site-player-live-outer' ). html( '<div id="site-player-live-outer"><div id="site-player-live"></div></div>' )
+        $( '#site-player-live-outer' ).html( '<div id="site-player-live-outer"><div id="site-player-live"></div></div>' )
         plive.dim = { w: 640, h: 360 }
         ww = $( window ).width()
         if( 390 > ww ) plive.dim = { w: 270, h: 150 }
@@ -112,10 +68,12 @@ var plive = {
             else plive.video_tag()
         })
     },
+
     // video_tag()
     video_tag: function() {
-        $( '#site-player-live-outer' ). html( '<div id="site-player-live-outer"><video id="site-player-live" src="' + plive.source + '" controls autoPlay type="application/x-mpegURL" width="' + plive.dim.w + '" height="' + plive.dim.h + '" onended="plive.play();"></video></div>' )
+        $( '#site-player-live-outer' ). html( '<div id="site-player-live-outer"><video id="site-player-live" src="' + plive.SOURCE + '" controls autoPlay type="application/x-mpegURL" width="' + plive.dim.w + '" height="' + plive.dim.h + '" onended="plive.play();"></video></div>' )
     },
+
     // video_flash()
     video_flash: function() {
         swfobject.embedSWF(
@@ -124,7 +82,7 @@ var plive = {
             plive.dim.w, plive.dim.h,
             '10.1.0',
             'flash/expressInstall.swf', {
-                src: plive.source,
+                src: plive.SOURCE,
                 autoPlay: true,
                 verbose: true,
                 //controlBarMode: 'none',
