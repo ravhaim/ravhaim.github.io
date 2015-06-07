@@ -7,7 +7,7 @@ $( document ). ready( function() {
     // On-demand player
     if( $( '#site-player-od' ).length ) {
         var tmp0 = {
-            name:       'http://media.ravhaim.org/' + $( '#site-player-od' ). attr( 'data-site-name' ),
+            name:       'http://media.ravhaim.org/fpxhui/' + $( '#site-player-od' ). attr( 'data-site-name' ),
             has_video:  'true' == $( '#site-player-od' ). attr( 'data-site-od-player-has-video' ),
             poster:     $( '#site-player-od-video' ). attr( 'poster' ),
             nohtml5:    'undefined' == typeof $( '#site-player-od-video' )[ 0 ],
@@ -53,7 +53,7 @@ $( document ). ready( function() {
     
     // Download buttons
 	$('.site-dl'). click( function() {
-        $. fileDownload( 'http://media.ravhaim.org/' + $( this ). attr( 'data-site-name' ) + '.' + $( this ). attr( 'data-site-ext' ) + '?response-content-disposition=attachment&response-content-type=application/octet-stream' )
+        $. fileDownload( 'http://media.ravhaim.org/fpxhui/' + $( this ). attr( 'data-site-name' ) + '.' + $( this ). attr( 'data-site-ext' ) + '?response-content-disposition=attachment&response-content-type=application/octet-stream' )
         return false
 	})
     
