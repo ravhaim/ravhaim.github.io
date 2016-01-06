@@ -2,12 +2,28 @@
  * ravhaim.org
  */
 
+ENDPOINT = {
+    '5771': 'https://lb9911.hubic.ovh.net/v1/AUTH_923194f1089bca170b98dbeeca4ae2be/default/',
+    '5772': 'https://lb9911.hubic.ovh.net/v1/AUTH_48a68cffb3e5258a4268ea702ab42b18/default/',
+    '5773': 'https://lb9911.hubic.ovh.net/v1/AUTH_c930b49cf0afa0c6869e1868d307ace7/default/5773/',
+    '5774': 'https://lb9911.hubic.ovh.net/v1/AUTH_c930b49cf0afa0c6869e1868d307ace7/default/5774/',
+    '5775': 'https://lb9911.hubic.ovh.net/v1/AUTH_c930b49cf0afa0c6869e1868d307ace7/default/5775/',
+    '5776': 'https://lb9911.hubic.ovh.net/v1/AUTH_c02d7149cabc2666cba7301de18b6d8b/default/'
+}
+
+function get_url( from ) {
+    media_name = from. attr( 'data-site-name' )
+    shana = media_name. substr( 0, 4 )
+    return ENDPOINT[ shana ] + media_name
+}
+
 $( document ). ready( function() {
 
     // On-demand player
     if( $( '#site-player-od' ).length ) {
         var tmp0 = {
-            name:       'http://media.ravhaim.org/tkpnuz/' + $( '#site-player-od' ). attr( 'data-site-name' ),
+            //name:       'http://media.ravhaim.org/tkpnuz/' + $( '#site-player-od' ). attr( 'data-site-name' ),
+            name:       get_url( $( '#site-player-od' )),
             has_video:  'true' == $( '#site-player-od' ). attr( 'data-site-od-player-has-video' ),
             poster:     $( '#site-player-od-video' ). attr( 'poster' ),
             nohtml5:    'undefined' == typeof $( '#site-player-od-video' )[ 0 ],
@@ -53,8 +69,11 @@ $( document ). ready( function() {
     
     // Download buttons
 	$('.site-dl'). click( function() {
-        $. fileDownload( 'http://media.ravhaim.org/tkpnuz/' + $( this ). attr( 'data-site-name' ) + '.' + $( this ). attr( 'data-site-ext' ) + '?response-content-disposition=attachment&response-content-type=application/octet-stream' )
-        return false
+        //$. fileDownload( 'http://media.ravhaim.org/tkpnuz/' + $( this ). attr( 'data-site-name' ) + '.' + $( this ). attr( 'data-site-ext' ) + '?response-content-disposition=attachment&response-content-type=application/octet-stream' )
+        $( this ). attr( 'href', get_url( $( this )) + '.' + $( this ). attr( 'data-site-ext' ))
+        $( this ). attr( 'download', '' )
+        $( this ). attr( 'type', 'application/octet-string' )
+        //return false
 	})
     
     var api_endpoint = 'http://api.ravhaim.org?action=?'
