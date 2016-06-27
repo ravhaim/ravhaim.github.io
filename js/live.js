@@ -2,7 +2,7 @@
 var plive = {
     SOURCE: 'http://media.ravhaim.org/live/live.m3u8',
     //STATE:  'http://media.ravhaim.org/live/live.json',
-    STATE:  'http://api.ravhaim.org/live.txt',
+    STATE:  'http://api.ravhaim.org?action=none&status=1',
     CHANNEL: '/status',
     ENDP:    'http://status-ravhaim.rhcloud.com/status',
 
