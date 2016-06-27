@@ -2,7 +2,7 @@
 var plive = {
     SOURCE: 'http://media.ravhaim.org/live/live.m3u8',
     //STATE:  'http://media.ravhaim.org/live/live.json',
-    STATE:  'http://api.ravhaim.org?action=none&status=1',
+    STATE:  'http://api.ravhaim.org?action=?',
     CHANNEL: '/status',
     ENDP:    'http://status-ravhaim.rhcloud.com/status',
 
@@ -13,7 +13,7 @@ var plive = {
     // init()
     init: function() {
         if( $( '#site-player-live-outer' ). length ) {
-            $.getJSON( plive.STATE )
+            $.getJSON( plive.STATE, { status: 1 })
                 .done( plive.live_switch2 )
             
             plive. client = new Faye.Client( plive. ENDP )
@@ -24,9 +24,8 @@ var plive = {
     },
 
     live_switch2: function( response ) {
-        if( 'string' == typeof response ) var r = JSON.parse( response )
-        else var r = response
-        console.log( r )
+        if( 'string' == typeof response ) var r = JSON.parse( JSON.parse( response ). result )
+        else var r = JSON.parse( response. result )
         switch( r. c ) {
             case 1:
                 plive.show_video()
