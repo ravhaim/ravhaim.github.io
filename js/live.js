@@ -1,7 +1,8 @@
 
 var plive = {
     SOURCE: 'http://media.ravhaim.org/live/live.m3u8',
-    STATE:  'http://media.ravhaim.org/live/live.json',
+    //STATE:  'http://media.ravhaim.org/live/live.json',
+    STATE:  'http://api.ravhaim.org/live.txt',
     CHANNEL: '/status',
     ENDP:    'http://status-ravhaim.rhcloud.com/status',
 
@@ -25,6 +26,7 @@ var plive = {
     live_switch2: function( response ) {
         if( 'string' == typeof response ) var r = JSON.parse( response )
         else var r = response
+        console.log( r )
         switch( r. c ) {
             case 1:
                 plive.show_video()
