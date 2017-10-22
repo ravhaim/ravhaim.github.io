@@ -10,7 +10,8 @@ ENDPOINT = {
     '5774': 'https://lb9911.hubic.ovh.net/v1/AUTH_c930b49cf0afa0c6869e1868d307ace7/default/5774/',
     '5775': 'https://lb9911.hubic.ovh.net/v1/AUTH_c930b49cf0afa0c6869e1868d307ace7/default/5775/',
     '5776': 'https://lb9911.hubic.ovh.net/v1/AUTH_c02d7149cabc2666cba7301de18b6d8b/default/',
-    '5777': 'https://lb9911.hubic.ovh.net/v1/AUTH_c02d7149cabc2666cba7301de18b6d8b/default/'
+    '5777': 'https://lb9911.hubic.ovh.net/v1/AUTH_c02d7149cabc2666cba7301de18b6d8b/default/',
+    '5778': 'https://lb9911.hubic.ovh.net/v1/AUTH_c02d7149cabc2666cba7301de18b6d8b/default/'
 }
 
 function get_url( from ) {
