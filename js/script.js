@@ -151,7 +151,7 @@ $( document ). ready( function() {
                 $( '.site-contact-success' ). show()
             })
             .fail(function (response) {
-                console.log(response)
+                console.log(response.statusCode())
                 $( '#site-contact-finish' ). modal( 'show' )
                 $( '.site-contact-fail' ). show()
             })
