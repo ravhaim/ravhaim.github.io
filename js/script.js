@@ -135,6 +135,7 @@ $( document ). ready( function() {
             document.location = '/'
 
     // Contact
+    IFTTT = 'https://maker.ifttt.com/trigger/contact/json/with/key/hvycRQXMITdw9IuUv4k-9x1erlSEUeTVDYkV7peodTn'
     $( '#site-contact-submit' ). click( function() {
             $( '.site-contact-feedback' ). hide()
             info = $( '#site-contact-message' ). get( 0 ).value
@@ -144,7 +145,7 @@ $( document ). ready( function() {
                 return false
             }
             $( this ). button( 'loading' )
-            $.getJSON( api_endpoint, { contact: info })
+            $.getJSON( IFTTT, { contact: info })
             .done( function( response ) {
                 $( '#site-contact-finish' ). modal( 'show' )
                 $( '.site-contact-success' ). show()
