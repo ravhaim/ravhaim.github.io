@@ -2,23 +2,24 @@
  * ravhaim.org
  */
 
-ENDPOINT = {
-    '5770': 'https://lb9911.hubic.ovh.net/v1/AUTH_923194f1089bca170b98dbeeca4ae2be/default/',
-    '5771': 'https://lb9911.hubic.ovh.net/v1/AUTH_923194f1089bca170b98dbeeca4ae2be/default/',
-    '5772': 'https://lb9911.hubic.ovh.net/v1/AUTH_48a68cffb3e5258a4268ea702ab42b18/default/',
-    '5773': 'https://lb9911.hubic.ovh.net/v1/AUTH_c930b49cf0afa0c6869e1868d307ace7/default/5773/',
-    '5774': 'https://lb9911.hubic.ovh.net/v1/AUTH_c930b49cf0afa0c6869e1868d307ace7/default/5774/',
-    '5775': 'https://lb9911.hubic.ovh.net/v1/AUTH_c930b49cf0afa0c6869e1868d307ace7/default/5775/',
-    '5776': 'https://lb9911.hubic.ovh.net/v1/AUTH_c02d7149cabc2666cba7301de18b6d8b/default/',
-    '5777': 'https://lb9911.hubic.ovh.net/v1/AUTH_c02d7149cabc2666cba7301de18b6d8b/default/',
-    '5778': 'https://lb9911.hubic.ovh.net/v1/AUTH_c02d7149cabc2666cba7301de18b6d8b/default/',
-    '5779': 'https://lb9911.hubic.ovh.net/v1/AUTH_c930b49cf0afa0c6869e1868d307ace7/default/5779/'
-}
+//ENDPOINT = {
+//    '5770': 'https://lb9911.hubic.ovh.net/v1/AUTH_923194f1089bca170b98dbeeca4ae2be/default/',
+//    '5771': 'https://lb9911.hubic.ovh.net/v1/AUTH_923194f1089bca170b98dbeeca4ae2be/default/',
+//    '5772': 'https://lb9911.hubic.ovh.net/v1/AUTH_48a68cffb3e5258a4268ea702ab42b18/default/',
+//    '5773': 'https://lb9911.hubic.ovh.net/v1/AUTH_c930b49cf0afa0c6869e1868d307ace7/default/5773/',
+//    '5774': 'https://lb9911.hubic.ovh.net/v1/AUTH_c930b49cf0afa0c6869e1868d307ace7/default/5774/',
+//    '5775': 'https://lb9911.hubic.ovh.net/v1/AUTH_c930b49cf0afa0c6869e1868d307ace7/default/5775/',
+//    '5776': 'https://lb9911.hubic.ovh.net/v1/AUTH_c02d7149cabc2666cba7301de18b6d8b/default/',
+//    '5777': 'https://lb9911.hubic.ovh.net/v1/AUTH_c02d7149cabc2666cba7301de18b6d8b/default/',
+//    '5778': 'https://lb9911.hubic.ovh.net/v1/AUTH_c02d7149cabc2666cba7301de18b6d8b/default/',
+//    '5779': 'https://lb9911.hubic.ovh.net/v1/AUTH_c930b49cf0afa0c6869e1868d307ace7/default/5779/'
+//}
 
 function get_url( from ) {
-    media_name = from. attr( 'data-site-name' )
-    shana = media_name. substr( 0, 4 )
-    return ENDPOINT[ shana ] + media_name
+    media_name = from.attr('data-site-name')
+    return 'https://t2s2.c13.e2-2.dev/ravhaim/' + media_name
+    //shana = media_name. substr( 0, 4 )
+    //return ENDPOINT[ shana ] + media_name
 }
 
 $( document ). ready( function() {
