@@ -152,7 +152,7 @@ $( document ). ready( function() {
             })
             .fail(function (response) {
                 $( '#site-contact-finish' ). modal( 'show' )
-                $( '.site-contact-fail' ). show()
+                $( '.site-contact-fail' ). show() 
             })   */
             .always( function( response ) {
                 $('#site-contact-finish').modal('show')     // hack ignoring CORS
