@@ -145,7 +145,7 @@ $( document ). ready( function() {
                 return false
             }
             $( this ). button( 'loading' )
-            $.getJSON( IFTTT, { contact: info })
+            $.postJSON( IFTTT, { contact: info })
             .done( function( response ) {
                 $( '#site-contact-finish' ). modal( 'show' )
                 $( '.site-contact-success' ). show()
