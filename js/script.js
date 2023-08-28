@@ -150,7 +150,8 @@ $( document ). ready( function() {
                 $( '#site-contact-finish' ). modal( 'show' )
                 $( '.site-contact-success' ). show()
             })
-            .fail( function( response ) {
+            .fail(function (response) {
+                console.log(response)
                 $( '#site-contact-finish' ). modal( 'show' )
                 $( '.site-contact-fail' ). show()
             })
