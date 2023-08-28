@@ -146,16 +146,17 @@ $( document ). ready( function() {
             }
             $( this ). button( 'loading' )
         $.post(IFTTT, { contact: info })
-            .done( function( response ) {
+/*            .done( function( response ) {
                 $( '#site-contact-finish' ). modal( 'show' )
                 $( '.site-contact-success' ). show()
             })
             .fail(function (response) {
-                console.log(response.getAllResponseHeaders())
                 $( '#site-contact-finish' ). modal( 'show' )
                 $( '.site-contact-fail' ). show()
-            })
+            })   */
             .always( function( response ) {
+                $('#site-contact-finish').modal('show')     // hack ignoring CORS
+                $('.site-contact-success').show()           // hack continued :(
                 $( '#site-contact-submit' ). button( 'reset' )
             })
             return false
