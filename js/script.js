@@ -15,7 +15,8 @@
 ////    '5779': 'https://lb9911.hubic.ovh.net/v1/AUTH_c930b49cf0afa0c6869e1868d307ace7/default/5779/'
 ////}
 
-ENDPOINT = 'https://j0l3.fra.idrivee2-25.com/ravhaim/'
+//ENDPOINT = 'https://j0l3.fra.idrivee2-25.com/ravhaim/'
+ENDPOINT = 'https://t2s2.c13.e2-2.dev/ravhaim/'
 
 function get_url( from ) {
     media_name = from.attr('data-site-name')
